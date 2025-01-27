@@ -1,0 +1,256 @@
+1
+
+cd Desktop/
+
+mkdir devops
+
+cd devops/
+
+git init
+
+touch test.txt
+
+git add .
+
+git commit -m "Initial commit"
+
+git config --global user.name "name"
+git config --global user.email "mail@gmail.com"
+
+
+git branch b1
+
+git checkout b1
+
+touch test2.txt
+
+gti add .
+
+gti commit -m "branch commit"
+
+ls
+
+git checkout master 
+
+git merge b1
+
+
+*********************************************************************************************************************
+
+Program 2
+
+$ git clone https://github.com/Mahi2708/sample-programs.git
+$ cd sample-programs/
+$ cat README.md
+$ nano README.md
+$ git add .
+$git commit -m  "committed2"
+$ git push origin master/main
+
+*********************************************************************************************************************
+
+Program 3
+
+.github/workflows/actions.yaml
+
+
+name: My First GitHub Actions
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        python-version: [3.8, 3.9]
+
+    steps: 
+
+    - uses: actions/checkout@v3
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pytest
+
+    - name: Run tests
+      run: |
+        cd src
+        python -m pytest addition.py
+
+
+A.
+src/addition.py
+
+def add(a,b):
+  return a+b
+
+def test_add():
+  assert add(1,2) == 3
+  assert add(1,-1) == 0
+
+
+*********************************************************************************************************************
+Program 4
+
+docker pull nginx
+docker pull budybox
+
+docker run -d -p 8080:80 nginx
+
+docker run busybox
+
+docker run busybox echo hello
+
+docker --version
+docker images 
+docker pull redis
+docker images
+docker ps
+docker run --privileged redis
+docker ps
+docker exec -it <cid> sh
+docker stop <cid>
+docker rm <cid>
+docker rmi<iid>
+
+
+*********************************************************************************************************************
+
+Program 5:
+
+html folder 
+index.html -----------------------------------------------------------------------------------
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sample Web App</title>
+</head>
+<body>
+    <h1>Welcome to the Sample Web Application!</h1>
+    <p>This is a basic HTML and JavaScript application running in a Docker container.</p>
+    <script>
+        console.log('Hello from JavaScript!');
+    </script>
+</body>
+</html>
+
+Dockerfile -------------------------------------------------------------
+
+FROM nginx:alpine
+COPY html /usr/share/nginx/html
+EXPOSE 80
+
+docker build -t my-server .
+docker run -d -p 8080:80 my-server
+
+docker ps
+docker-machine ip
+browser - ip:8080
+
+https://drive.google.com/drive/folders/1AfDRJo-sFQxXQIb8LtyLJUMzaTlBjQmm?usp=sharing
+
+
+*********************************************************************************************************************
+
+
+
+
+*********************************************************************************************************************
+
+LINK TO EXEC VIDEOS
+
+https://drive.google.com/drive/folders/1Mlv6bHOMOlL5Pxihe0NaCjQpvbLynflp
+
+*********************************************************************************************************************
+Program 6:
+
+download jdk 17
+download jenkins msi file		(port 8080)
+download sonarqube zip file 		(port 9000)
+
+
+go to localhost 8080 and setup admin user
+
+manage jenkins -> plugins -> download SonarQube Scanner plugin
+
+extract sonarqube zip file -> go to bin -> windows-x86-64 0 -> open terminlal there 
+
+
+*********************************************************************************************************************
+
+in terminal : .\StartSonar.bat -> go to localhost 9000 (id and pwd is "admin)
+
+create local project -> add lab6 -> use global setting (localhost 9000)
+
+analysis method -> locally -> generate token (id : lab6)  (localhost 9000)
+
+
+*********************************************************************************************************************
+
+
+go to localhost 8080  -> manage jenkins -> credentials -> secret text -> copy paste the token with the id (lab6)
+
+go to localhost 8080  -> manage jenkins -> system -> Add SonarQube -> name : sonarqube and select authentication token from dropdown
+
+go to localhost 8080 -> tools -> SonarQube Scanner installations -> install automatically -> save
+
+*********************************************************************************************************************
+
+
+go to localhost 8080 -> new item -> lab6 -> freestyle project -> source : git -> main branch specify in 8080 ->click on prepare sonarqube env and select token
+
+
+https://github.com/sunny-shaw/retail-store.git
+
+
+*********************************************************************************************************************
+
+-> add build step -> add "execute sonarqub scanner"  
+
+
+Analysis properties:
+
+sonar.projectKey=retail-store-jenkins-project
+sonar.projectName=retail-store-jenkins-project
+sonar.projectVersion=1.0
+sonar.language=java
+sonar.tests=src/test/java
+sonar.sources=src/main/java
+
+
+save -> build now -> console output
+
+
+*********************************************************************************************************************
+
+Program 7:
+
+
+download jdk 17
+download jenkins msi file		(port 8080)
+download apache maven
+
+
+go to localhost 8080 -> plugins -> install
+
+"Maven integration plugin"
+"Pipeline Maven integration plugin"
+
+go to localhost 8080 -> tools -> Maven installations -> add maven path (eg : D:\misc\.....)
+
+go to localhost 8080 -> new item -> lab7 -> pipeline project -> add pipeline script -> check video for pipeline code
+
+
+https://github.com/ravdy/hello-world.git
+
+save -> build now
+
+*********************************************************************************************************************
